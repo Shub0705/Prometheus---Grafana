@@ -1,0 +1,41 @@
+How to set prometheus in your sever basic step-by-step by shubham karale
+ 1)Update your server 
+  # apt update \ yum update
+ 2)Goto google and search 
+   https://github.com/prometheus/prometheus/releases   ---------> this file
+
+  3)Download Promethues file from  git 
+  # wget https://github.com/prometheus/prometheus/releases/download/v3.4.1/prometheus-3.4.1.linux-386.tar.gz
+
+ 4) Then check the file in your server 
+   # ls 
+ 5) Extracted the file 
+   # tar -xzvf  prometheus-3.4.1.linux-386.tar.gz -C .
+ 
+ 6) Then checkout you extrat file 
+   # ls 
+     look like this (prometheus-3.4.1.linux-386)
+  
+ 7)the go to the configefile 
+   # cd /etc/
+  
+8) create directory 
+   # mkdir prometheus 
+   # cd prometheus ------> to enter directory
+
+9)create file 
+   #vim prometheus.yml
+   --> past below code in your  prometheus.yml  file
+
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+10)use this command to start prometheus 
+   # nohup prometheus --config.file=/etc/prometheus/prometheus.yml &             ---> as it is 
+
+11) copy your IP add and hit in browser whit port number 0.0.0.0:9090 
